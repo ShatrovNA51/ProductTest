@@ -46,12 +46,15 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public Product save(Product product) {
 
-        Manufacturer manufacturer = manufacturerRepository.findById(product.getManufacturer().getId()).orElse(null);
-        if (manufacturer == null) {
-            manufacturer = manufacturerRepository.save(Manufacturer.builder()
-                    .name(product.getManufacturer().getName()).build());
+        if (product.getManufacturer() != null) {
+            Manufacturer manufacturer = manufacturerRepository.findById(product.getManufacturer().getId()).orElse(null);
+            if (manufacturer == null) {
+                    manufacturer = manufacturerRepository.save(Manufacturer.builder()
+                            .name(product.getManufacturer().getName()).build());
+            }
+            product.setManufacturer(manufacturer);
         }
-        product.setManufacturer(manufacturer);
+
         return productRepository.save(product);
     }
 
