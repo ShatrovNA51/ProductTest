@@ -5,5 +5,5 @@ import org.springframework.stereotype.Repository;
 
 
 @Repository
-public interface MonitorProductRepository extends ProductRepository<MonitorProduct>{
+public interface MonitorProductRepository extends ProductRepository<MonitorProduct> {
 }
