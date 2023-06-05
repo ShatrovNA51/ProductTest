@@ -17,16 +17,18 @@ public abstract class Product {
     @GeneratedValue
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="manufacturer_id")
     private Manufacturer manufacturer;
 
-    @Column(name = "serial_number")
-    private String serialNumber;
+    @Column(name = "model_name")
+    private String modelName;
 
     private BigDecimal price;
 
     private Long quantity;
 
+    @Column(insertable=false, updatable=false)
     private String type;
 
 }
